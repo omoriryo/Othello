@@ -135,55 +135,6 @@ public class GridScript : MonoBehaviour {
 		}
 	}
 
-	public bool ShowTarget(bool isBlackTurn)
-	{
-		bool isPutable = false;
-		for (int r = 0; r < rowNum_; ++r) {
-			for (int c = 0; c < colNum_; ++c) {
-				GameObject grid = GameManager.instance.boardManager.GetGrid(c, r);
-				GameObject stone = grid.GetComponent<GridScript>().GetStone();
-				GameObject target = grid.GetComponent<GridScript>().GetTarget();
-				Destroy(target);
-				if (!stone)
-				{
-					if (grid.GetComponent<GridScript> ().JudgeStonePutable(isBlackTurn)) {
-						grid.GetComponent<GridScript> ().PutTarget (isBlackTurn);
-						isPutable = true;
-					}
-				}
-			}
-		}
-		return isPutable;
-	}
-
-	public void JudgeGame()
-	{
-		//int is1PWin = 0;
-		int WhiteNum = 0;
-		int BlackNum = 0;
-		for (int r = 0; r < rowNum_; ++r) {
-			for (int c = 0; c < colNum_; ++c) {
-				GameObject grid = GameManager.instance.boardManager.GetGrid(c, r);
-				GameObject stone = grid.GetComponent<GridScript>().GetStone();
-				if (stone)
-				{
-					if (stone.GetComponent<StoneScript> ().IsBlack()) {
-						BlackNum++;
-					} else {
-						WhiteNum++;
-					}
-				}
-			}
-		}
-		if (WhiteNum < BlackNum) {
-			StartCoroutine (ChangeScene ());
-		} else if (WhiteNum == BlackNum) {
-			StartCoroutine (ChangeScene2 ());
-		} else {
-			StartCoroutine (ChangeScene3 ());
-		}
-	}
-
 	public void PutStone(bool isBlack)
 	{
 		// 黒か白のPrefabを設定
@@ -211,26 +162,7 @@ public class GridScript : MonoBehaviour {
 		// ターゲットの色を設定
 		target_.GetComponent<TargetScript>().IsBlack(isBlack);
 	}
-
-	IEnumerator ChangeScene()
-	{
-		// 4秒間待機
-		yield return new WaitForSeconds(2);
-		Application.LoadLevel("Result");
-	}
-
-	IEnumerator ChangeScene2()
-	{
-		// 4秒間待機
-		yield return new WaitForSeconds(2);
-		Application.LoadLevel("Result2");
-	}
-	IEnumerator ChangeScene3()
-	{
-		// 4秒間待機
-		yield return new WaitForSeconds(2);
-		Application.LoadLevel("Result3");
-	}
+		
 	// Use this for initialization
 	void Start()
 	{
