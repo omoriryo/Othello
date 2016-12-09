@@ -6,11 +6,11 @@ PlayerSettings:
   serializedVersion: 10
   productGUID: 90280629de80a45b6acd950d42c72d0f
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: omor
   productName: Othello
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
