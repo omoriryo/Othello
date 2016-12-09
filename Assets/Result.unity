@@ -168,6 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResultSound: {fileID: 8300000, guid: 58c407a575deb431b8ab16bc9ac2ab69, type: 3}
+  BlackWinSprite: {fileID: 21300000, guid: 9197eab8d14d54c35a8bbfd2d5aeecb3, type: 3}
+  WhiteWinSprite: {fileID: 21300000, guid: e3b25fa55ccee441583b8b122f7661c6, type: 3}
+  DrawSprite: {fileID: 21300000, guid: 9878a1a47ba6c44d9a6f8aed0ce145c2, type: 3}
 --- !u!1 &1805394010
 GameObject:
   m_ObjectHideFlags: 0

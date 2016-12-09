@@ -70,13 +70,70 @@ public class BoardManager : MonoBehaviour {
 
 
 	}
-		// Use this for initialization
-		void Start () {
-			//MakeGrids();
+
+	public void JudgeGame()
+	{
+		//int is1PWin = 0;
+		int WhiteNum = 0;
+		int BlackNum = 0;
+		for (int r = 0; r < rowNum_; ++r) {
+			for (int c = 0; c < colNum_; ++c) {
+				GameObject grid = GetGrid(c, r);
+				GameObject stone = grid.GetComponent<GridScript>().GetStone();
+				if (stone)
+				{
+					if (stone.GetComponent<StoneScript> ().IsBlack()) {
+						BlackNum++;
+					} else {
+						WhiteNum++;
+					}
+				}
+			}
 		}
+		if (WhiteNum < BlackNum) {
+			GameManager.Result = 0;
+		} else if (WhiteNum > BlackNum) {
+			GameManager.Result = 1;
+		} else {
+			GameManager.Result = 2;
+		}
+		StartCoroutine (ChangeScene ());
+	}
+
+	public bool ShowTarget(bool isBlackTurn)
+	{
+		bool isPutable = false;
+		for (int r = 0; r < rowNum_; ++r) {
+			for (int c = 0; c < colNum_; ++c) {
+				GameObject grid = GetGrid(c, r);
+				GameObject stone = grid.GetComponent<GridScript>().GetStone();
+				GameObject target = grid.GetComponent<GridScript>().GetTarget();
+				Destroy(target);
+				if (!stone)
+				{
+					if (grid.GetComponent<GridScript> ().JudgeStonePutable(isBlackTurn)) {
+						grid.GetComponent<GridScript> ().PutTarget (isBlackTurn);
+						isPutable = true;
+					}
+				}
+			}
+		}
+		return isPutable;
+	}
+
+	IEnumerator ChangeScene()
+	{
+		// 4秒間待機
+		yield return new WaitForSeconds(2);
+		Application.LoadLevel("Result");
+	}
+
+		// Use this for initialization
+	void Start () {
+			//MakeGrids();
+	}
 
 		// Update is called once per frame
-		void Update()
-		{
-		}
+	void Update(){
 	}
+}

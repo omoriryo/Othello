@@ -52,7 +52,7 @@ public class MachinePlayer : PlayerBase
 	public override bool Play()
 	{
 		GameObject grid = GameManager.instance.boardManager.GetGrid(0, 0);
-		if (grid.GetComponent<GridScript> ().ShowTarget (isBlack_)) {
+		if (GameManager.instance.boardManager.ShowTarget (isBlack_)) {
 			// 石を置くグリッドを選ぶ
 			GridScript gridScript;
 			SelectGrid(out gridScript);
