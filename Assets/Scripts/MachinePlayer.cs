@@ -51,7 +51,6 @@ public class MachinePlayer : PlayerBase
 
 	public override bool Play()
 	{
-		GameObject grid = GameManager.instance.boardManager.GetGrid(0, 0);
 		if (GameManager.instance.boardManager.ShowTarget (isBlack_)) {
 			// 石を置くグリッドを選ぶ
 			GridScript gridScript;
@@ -64,7 +63,6 @@ public class MachinePlayer : PlayerBase
 
 			// ひっくり返す
 			gridScript.TurnStone(isBlack_);
-			gridScript.ShowTarget (!isBlack_);
 
 			GameManager.AddTrun ();
 			return true;

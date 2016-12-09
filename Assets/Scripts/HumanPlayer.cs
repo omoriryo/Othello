@@ -25,8 +25,7 @@ public class HumanPlayer : PlayerBase {
 	public override bool Play()
 	{
 		// タップ検知
-		GameObject grid = GameManager.instance.boardManager.GetGrid(0,0);
-		if (grid.GetComponent<GridScript> ().ShowTarget (isBlack_)) {
+		if (GameManager.instance.boardManager.ShowTarget (isBlack_)) {
 			GridScript gridScript;
 			if (DetectTap (out gridScript)) {
 				// グリッドをタップしており、かつ、そこに石が無いなら

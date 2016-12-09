@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour {
 			if (players [playerNo].Play ()) {
 				isBlackTurn = !isBlackTurn;
 			}
-			GameObject grid = GameManager.instance.boardManager.GetGrid (0, 0);
-
 			if (!GameManager.instance.boardManager.ShowTarget(isBlackTurn) && !GameManager.instance.boardManager.ShowTarget (!isBlackTurn)) {
 				isEnd = true;
 				GameManager.instance.boardManager.JudgeGame ();
